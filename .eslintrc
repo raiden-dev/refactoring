@@ -1,0 +1,32 @@
+{
+  "extends": "eslint:recommended",
+  "rules": {
+    "indent": [0],
+    "linebreak-style": [2, "unix"],
+    "no-console": [0],
+    "no-unused-vars": [1],
+    "one-var": [0],
+    "quotes": [1, "single"],
+    "semi": [2, "always"]
+  },
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "blockBindings": true,
+    "classes": true,
+    "defaultParams": true,
+    "forOf": true,
+    "modules": true,
+    "superInFunctions": true,
+    "templateStrings": true
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "globals": {
+    "window": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  }
+}

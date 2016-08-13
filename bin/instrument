@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+
+var path = require('path'),
+    fs = require('fs'),
+    yargs = require('yargs'),
+    Instrumenter = require('../lib/Instrumenter').default;
+
+var argv = yargs
+  .usage('Usage: $0 [options] <file>')
+  .options({
+    'o': {
+      alias: 'output',
+      describe: 'Output file'
+    },
+    'c': {
+      alias: 'client',
+      describe: 'Output client file'
+    }
+  })
+  .help('h').alias('h', 'help')
+  .string(['o', 'c'])
+  .demand(1)
+  .argv;
+
+fs.readFile(argv._[0], 'utf8', function (err, data) {
+  if (err) {
+    throw err;
+  }
+
+  var inst = new Instrumenter({ input: data });
+  var output = inst.instrument();
+
+  if (argv.output) {
+    fs.writeFile(argv.output, output, function (err) {
+      if (err) {
+        throw err;
+      }
+    });
+  }
+  else {
+    process.stdout.write(output);
+  }
+
+  if (argv.client) {
+    fs.createReadStream(path.join(__dirname, '../public/inst.js'))
+      .pipe(fs.createWriteStream(argv.client));
+  }
+});
