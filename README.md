@@ -4,7 +4,7 @@ Collection of the JavaScript static and dynamic analysis tools suitable for code
 
 ## List of tools
 
-  * Instrumenter – Instruments every function to measure execution performance at runtime.
+  * [Instrumenter](#instrumenter) – Instruments every function to measure execution performance at runtime.
 
 ## Installation
 
@@ -13,9 +13,10 @@ You may prefer to install refactoring tools globally and use them from shell or 
 To install globally run:
 
 ```sh
-# may require sudo priveleges
 npm install -g refactoring
 ```
+
+Note that global install may require sudo privileges on some systems.
 
 To install locally for project run:
 
@@ -37,6 +38,6 @@ Basic usage: `js-instrument -o /path/to/output.js -c /path/to/inst.js input.js`
 
 Instrumenter tool takes input file with your code, instruments it with client instructions and places output to path specified by `-o` or `--output` option.  
 
-You need to include client file in your project as well to handle added instructions. To use default instrumenter client pass the option `-c` or `--client` with path where to place client's file. Note that the client script should be included before the instrumented script on the page.  
+You need to include client file in your project as well to handle added instructions. To use bundled default instrumenter client pass the option `-c` or `--client` with path where to place client's file. Note that the client script should be included before the instrumented script on the page.  
 
 When using default client it will export `window.inst` object. Use `window.inst.result()` method to see current statistics.
